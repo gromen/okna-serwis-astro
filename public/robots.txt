@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oknoserwis.pl/sitemap-index.xml

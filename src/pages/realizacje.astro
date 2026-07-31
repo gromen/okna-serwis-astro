@@ -1,0 +1,63 @@
+---
+import Layout from '~/layouts/Layout.astro';
+
+// Once real photos exist, drop them into src/assets/portfolio/ (e.g. work-1.jpeg, work-2.jpeg, ...)
+// and swap this placeholder grid for the skill's standard pattern:
+//
+//   const modules = import.meta.glob<{ default: ImageMetadata }>(
+//     '~/assets/portfolio/*.{jpeg,jpg,png,webp,avif}',
+//     { eager: true }
+//   );
+//   const images = Object.entries(modules)
+//     .map(([path, mod]) => ({ path, src: mod.default }))
+//     .sort((a, b) => a.path.localeCompare(b.path, undefined, { numeric: true }));
+//
+// then render each with astro:assets <Image>. Left as labeled placeholders for now
+// since no portfolio photos exist yet.
+const placeholders = Array.from({ length: 8 }, (_, i) => `Realizacja ${i + 1}`);
+---
+<Layout title="Realizacje" description="Zobacz efekty naszych napraw i konserwacji okien w Warszawie i regionie — zdjęcia przed i po.">
+  <section class="container-page" style="padding-top:56px;padding-bottom:56px;">
+    <div class="eyebrow">Realizacje</div>
+    <h1 class="section-title" style="margin-bottom:14px;">Przed<span class="accent">.</span> <span class="light-part">I po.</span></h1>
+    <p class="body-text" style="max-width:58ch;margin-bottom:32px;">
+      Wybrane realizacje z Warszawy i regionu. Pełna galeria zdjęć pojawi się wkrótce.
+    </p>
+    <div class="portfolio-grid">
+      {placeholders.map((label) => (
+        <div class="photo-slot" style="aspect-ratio:1/1;">{label}</div>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+    border: 1px solid var(--color-border-strong);
+    padding: 4px;
+
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .photo-slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--color-bg-alt);
+    border: 1px dashed var(--color-border-strong);
+    color: var(--color-ink-faint);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 12px;
+  }
+</style>

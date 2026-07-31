@@ -1,0 +1,431 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import StatBar from '~/components/StatBar.astro';
+import ServiceCard from '~/components/ServiceCard.astro';
+import ReviewCard from '~/components/ReviewCard.astro';
+import FaqItem from '~/components/FaqItem.astro';
+import GoogleMap from '~/components/GoogleMap.astro';
+import { site } from '~/lib/site';
+import { services } from '~/lib/services';
+
+const phoneHref = `tel:${site.contact.phone.replace(/\s/g, '')}`;
+const steps = [
+  { n: '01', title: 'Zgłoszenie', desc: 'Dzwonisz lub piszesz na WhatsApp — opisujesz usterkę, wysyłasz zdjęcie okna.' },
+  { n: '02', title: 'Wycena', desc: 'Podajemy orientacyjny koszt i najbliższy możliwy termin dojazdu.' },
+  { n: '03', title: 'Naprawa', desc: 'Fachowiec przyjeżdża i naprawia okno na miejscu — zwykle w 20–60 minut.' },
+  { n: '04', title: 'Gwarancja', desc: 'Wystawiamy 24-miesięczną gwarancję na wykonaną usługę.' },
+];
+const reviews = [
+  { quote: 'Fachowiec przyjechał tego samego dnia, naprawił okno w 20 minut.', name: 'Anna K.', city: 'Ostrołęka' },
+  { quote: 'Uczciwa wycena, żadnych ukrytych kosztów. Okna działają jak nowe.', name: 'Marek W.', city: 'Wyszków' },
+  { quote: 'Szybki kontakt przez WhatsApp, umówili się na następny dzień.', name: 'Ewa T.', city: 'Zambrów' },
+];
+const faqs = [
+  { q: 'Ile kosztuje naprawa okna?', a: 'Zależy od usterki — podajemy wycenę po opisie telefonicznym lub diagnozie na miejscu. Wycena jest zawsze bezpłatna i niezobowiązująca.', open: true },
+  { q: 'Jak szybko możecie dojechać?', a: 'Zwykle tego samego dnia, w Warszawie i większych miastach regionu — dojazd do 60 minut od potwierdzenia terminu.' },
+  { q: 'Czy dajecie gwarancję na naprawę?', a: 'Tak, na każdą wykonaną usługę wystawiamy 24-miesięczną gwarancję.' },
+  { q: 'Czy obsługujecie moją miejscowość?', a: 'Obsługujemy Warszawę, Łomżę, Ostrołękę, Zambrów, Wyszków, Ostrów Mazowiecką i okoliczne miejscowości. Zadzwoń, żeby potwierdzić dojazd.' },
+];
+const values = [
+  { letter: 'S', title: 'Szybkość', desc: 'Dojazd tego samego dnia na terenie regionu, bez tygodni oczekiwania.' },
+  { letter: 'G', title: 'Gwarancja', desc: '24 miesiące gwarancji na każdą wykonaną usługę.' },
+  { letter: 'U', title: 'Uczciwość', desc: 'Jasna wycena przed naprawą, bez ukrytych kosztów.' },
+];
+---
+<Layout>
+  <!-- HERO -->
+  <section class="container-page" style="padding-top:32px;">
+    <div class="divider-row">
+      <span><span class="accent">●</span>&nbsp;Serwis naprawy okien · region Warszawa / Mazowsze</span>
+      <span>od 2013 · dojazd do 60 minut</span>
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <h1 class="hero-heading">
+          <span class="light-part">Zacięte</span><br/>
+          okno<span class="accent">.</span><br/>
+          <span class="light-part">Naprawimy</span><br/>
+          je dziś<span class="accent">.</span>
+        </h1>
+        <p class="hero-sub">
+          Regulacja, uszczelnianie, wymiana szyb i okuć. Dojeżdżamy do {site.serviceArea.join(', ')} — bez tygodni oczekiwania.
+        </p>
+        <div class="hero-ctas">
+          <a href={phoneHref} class="btn btn-primary">Umów naprawę →</a>
+          <a href="/#uslugi" class="btn">Zobacz usługi</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="hero-image-slot">Zdjęcie: fachowiec naprawiający okno</div>
+        <div class="hero-pills">
+          <div class="pill-dark"><span>Wycena</span><span class="accent">bezpłatna</span></div>
+          <div class="pill-dark"><span>Dojazd</span><span class="accent">tego samego dnia</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <StatBar />
+    </div>
+  </section>
+
+  <!-- O FIRMIE -->
+  <section class="section container-page">
+    <div class="eyebrow">02 / O firmie</div>
+    <h2 class="section-title">Zespół, który <span class="light-part">najpierw</span> diagnozuje<span class="accent">,</span> potem naprawia.</h2>
+    <div class="o-firmie-grid">
+      <div>
+        <div class="photo-slot" style="aspect-ratio:1/1;">Zdjęcie zespołu serwisantów</div>
+        <div class="fact-list">
+          <div class="fact-row"><span class="fact-label">Firma</span><span class="fact-value">Okno Serwis Sp. z o.o.</span></div>
+          <div class="fact-row"><span class="fact-label">Zasięg</span><span class="fact-value">Warszawa i region</span></div>
+          <div class="fact-row"><span class="fact-label">Marki okien</span><span class="fact-value">Rehau, Veka, Drutex</span></div>
+        </div>
+      </div>
+      <div>
+        <p class="lead-text">Jesteśmy zespołem certyfikowanych techników z <span class="accent">12-letnim doświadczeniem</span> w naprawie i regulacji okien PCV oraz drewnianych.</p>
+        <p class="body-text">Nie proponujemy wymiany całego okna tam, gdzie wystarczy regulacja okuć lub wymiana uszczelki. Każdą usterkę diagnozujemy na miejscu i podajemy jasną wycenę przed przystąpieniem do pracy.</p>
+        <p class="body-text">Obsługujemy klientów indywidualnych, wspólnoty i firmy na terenie {site.serviceArea.join(', ')}.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- USŁUGI -->
+  <section id="uslugi" class="section container-page">
+    <div class="eyebrow">03 / Usługi</div>
+    <h2 class="section-title" style="margin-bottom:14px;">Osiem usług<br/><span class="light-part">w jednym serwisie.</span></h2>
+    <p class="body-text" style="max-width:58ch;margin-bottom:32px;">Bez cen sztywnych — każda naprawa wyceniana indywidualnie po diagnozie na miejscu lub telefonicznym opisie usterki.</p>
+    <div class="card-grid">
+      {services.map((service) => <ServiceCard service={service} />)}
+    </div>
+    <a href="/uslugi" class="btn" style="margin-top:20px;">Zobacz wszystkie usługi →</a>
+  </section>
+
+  <!-- JAK PRACUJEMY -->
+  <section class="section section-alt container-page">
+    <div class="eyebrow">04 / Jak pracujemy</div>
+    <h2 class="section-title">Cztery kroki<span class="accent">.</span><br/><span class="light-part">Bez czekania tygodniami.</span></h2>
+    <div class="steps-list">
+      {steps.map((step) => (
+        <div class="step-row">
+          <div class="step-n">Krok {step.n}</div>
+          <div class="step-title">{step.title}</div>
+          <div class="step-desc">{step.desc}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- OBSZAR DZIAŁANIA -->
+  <section id="obszar" class="section container-page">
+    <div class="eyebrow">05 / Obszar działania</div>
+    <div class="obszar-grid">
+      <div>
+        <h2 class="section-title" style="margin-bottom:18px;">Dojeżdżamy<br/><span class="light-part">w całym regionie.</span></h2>
+        <p class="body-text" style="max-width:44ch;margin-bottom:28px;">Obsługujemy Warszawę oraz miasta i okolice na północnym Mazowszu — sprawdź, czy dojedziemy do Ciebie tego samego dnia.</p>
+        <div class="area-chip-grid">
+          {site.serviceArea.map((city) => <div class="area-chip">{city}</div>)}
+        </div>
+      </div>
+      <div>
+        <!-- TODO: replace with a real address/query once the business confirms a fixed location. -->
+        <GoogleMap />
+      </div>
+    </div>
+  </section>
+
+  <!-- OPINIE -->
+  <section id="opinie" class="section section-alt container-page">
+    <div class="eyebrow">06 / Opinie</div>
+    <h2 class="section-title">4.9 / 5<br/><span class="light-part">na podstawie 312 opinii.</span></h2>
+    <div class="review-grid">
+      {reviews.map((r) => <ReviewCard quote={r.quote} name={r.name} city={r.city} />)}
+    </div>
+  </section>
+
+  <!-- REALIZACJE -->
+  <section id="realizacje" class="section container-page">
+    <div class="eyebrow">07 / Realizacje</div>
+    <h2 class="section-title" style="margin-bottom:32px;">Przed<span class="accent">.</span> <span class="light-part">I po.</span></h2>
+    <div class="realizacje-grid">
+      <div class="photo-slot" style="aspect-ratio:1/1;">Przed / po 1</div>
+      <div class="photo-slot" style="aspect-ratio:1/1;">Przed / po 2</div>
+      <div class="photo-slot" style="aspect-ratio:1/1;">Przed / po 3</div>
+      <div class="photo-slot" style="aspect-ratio:1/1;">Przed / po 4</div>
+    </div>
+    <a href="/realizacje" class="btn" style="margin-top:20px;">Zobacz pełną galerię →</a>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section section-alt container-page">
+    <div class="eyebrow">08 / FAQ</div>
+    <h2 class="section-title">Najczęstsze<br/><span class="accent">pytania.</span></h2>
+    <div class="faq-grid">
+      <div>
+        <div class="faq-side-title">Nie znajdujesz odpowiedzi?</div>
+        <p class="body-text" style="max-width:32ch;margin-bottom:18px;">Zadzwoń lub napisz — odpowiadamy najszybciej, jak możemy. Wycena telefoniczna jest bezpłatna.</p>
+        <a href={phoneHref} class="btn">Zadzwoń →</a>
+      </div>
+      <div class="faq-list">
+        {faqs.map((f) => <FaqItem question={f.q} answer={f.a} open={f.open} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- WARTOŚCI -->
+  <section class="section container-page">
+    <div class="eyebrow">09 / Wartości</div>
+    <h2 class="section-title" style="margin-bottom:32px;">Trzy zasady<span class="accent">.</span></h2>
+    <div class="value-grid">
+      {values.map((v) => (
+        <div class="value-cell">
+          <div class="value-letter">{v.letter}</div>
+          <div class="value-title">{v.title}<span class="accent">.</span></div>
+          <div class="value-desc">{v.desc}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt" class="section section-alt container-page" style="border-bottom:none;">
+    <div class="eyebrow">10 / Kontakt</div>
+    <h2 class="section-title" style="margin-bottom:32px;max-width:18ch;">Zadzwoń<span class="accent">.</span> <span class="light-part">Naprawimy Twoje okno.</span></h2>
+    <div class="kontakt-grid">
+      <div class="kontakt-dark">
+        <div class="kontakt-headline">Wystarczy jedno<br/>zgłoszenie<span class="accent">,</span><br/>żebyśmy wiedzieli<br/>co dalej.</div>
+        <div class="kontakt-row">
+          <span class="kontakt-label">Telefon</span>
+          <a href={phoneHref} class="kontakt-value">{site.contact.phone}</a>
+        </div>
+        <div class="kontakt-row" style="border-bottom:1px solid rgba(247,245,240,.18);">
+          <span class="kontakt-label">E-mail</span>
+          <a href={`mailto:${site.contact.email}`} class="kontakt-value">{site.contact.email}</a>
+        </div>
+      </div>
+      <div class="kontakt-light">
+        <div class="kontakt-eyebrow">Jak to wygląda</div>
+        <div class="kontakt-subhead">Zadzwoń — powiemy, czy dojedziemy dziś.</div>
+        <div class="kontakt-ctas">
+          <a href={phoneHref} class="btn btn-primary">Zadzwoń →</a>
+          <a href={site.whatsapp} class="btn btn-accent">WhatsApp</a>
+        </div>
+        <div class="hours-list">
+          <div class="hours-row"><span>Pon — Sob</span><span class="hours-time">7:00 — 20:00</span></div>
+          <div class="hours-row" style="border-bottom:none;"><span>Niedziela</span><span class="hours-time">zgłoszenia awaryjne</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-heading {
+    font-weight: 600;
+    font-size: 44px;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    margin: 0 0 20px;
+    color: var(--color-ink);
+
+    @media (min-width: 768px) {
+      font-size: 88px;
+      line-height: 0.88;
+      letter-spacing: -0.045em;
+      margin-bottom: 30px;
+    }
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--color-ink-soft);
+    max-width: 48ch;
+    line-height: 1.55;
+    margin: 0 0 24px;
+
+    @media (min-width: 768px) {
+      font-size: 17px;
+      margin-bottom: 30px;
+    }
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: stretch;
+    padding-top: 32px;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: 1.3fr 1fr;
+      gap: 56px;
+      padding-top: 0;
+    }
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .hero-media {
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: 16px;
+  }
+
+  .hero-image-slot {
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--color-bg-alt);
+    border: 1px dashed var(--color-border-strong);
+    color: var(--color-ink-faint);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 20px;
+
+    @media (min-width: 1024px) {
+      min-height: 340px;
+    }
+  }
+
+  .hero-pills {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .photo-slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--color-bg-alt);
+    border: 1px dashed var(--color-border-strong);
+    color: var(--color-ink-faint);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 12px;
+  }
+
+  .o-firmie-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: start;
+    margin-top: 32px;
+
+    @media (min-width: 900px) {
+      grid-template-columns: 1fr 1.3fr;
+      gap: 48px;
+      margin-top: 44px;
+    }
+  }
+
+  .fact-list {
+    margin-top: 20px;
+    border-top: 1px solid var(--color-border-strong);
+  }
+
+  .fact-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 13px;
+  }
+
+  .fact-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-faint);
+  }
+
+  .fact-value {
+    font-weight: 500;
+    color: var(--color-ink);
+    text-align: right;
+  }
+
+  .lead-text {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    margin: 0 0 20px;
+
+    @media (min-width: 768px) {
+      font-size: 24px;
+    }
+  }
+
+  .body-text {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--color-ink-soft);
+    margin: 0 0 16px;
+
+    @media (min-width: 768px) {
+      font-size: 16px;
+    }
+  }
+
+  .obszar-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: center;
+
+    @media (min-width: 900px) {
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+    }
+  }
+
+  .realizacje-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+    border: 1px solid var(--color-border-strong);
+    padding: 4px;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: 32px;
+
+    @media (min-width: 900px) {
+      grid-template-columns: 1fr 1.6fr;
+      gap: 56px;
+    }
+  }
+
+  .faq-side-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--color-ink);
+    letter-spacing: -0.015em;
+    margin-bottom: 14px;
+  }
+
+  .faq-list {
+    border-top: 1px solid var(--color-border-strong);
+  }
+</style>

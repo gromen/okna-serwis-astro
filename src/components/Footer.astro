@@ -1,0 +1,50 @@
+---
+import { site } from '~/lib/site';
+const year = new Date().getFullYear();
+---
+<footer style="background:#14140f;color:#f7f5f0;padding:48px 20px 24px;">
+  <div class="container-page">
+    <div class="wordmark" style="font-size:48px;color:#f7f5f0;line-height:0.95;margin-bottom:32px;">
+      okno<span class="accent">.serwis</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr;gap:24px;padding-top:28px;border-top:1px solid rgba(247,245,240,.18);">
+      <div style="font-size:13px;color:rgba(247,245,240,.85);line-height:1.6;max-width:32ch;">
+        Regionalny serwis naprawy okien. {site.serviceArea.join(', ')} i okolice.
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+        <div>
+          <div style="font-family:var(--font-mono);font-size:11px;color:rgba(247,245,240,.5);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px;">Usługi</div>
+          <div style="font-size:13px;color:rgba(247,245,240,.85);line-height:2;">
+            <a href="/uslugi/naprawa-okien" style="color:inherit;">Naprawa okien</a><br/>
+            <a href="/uslugi/regulacja-okien" style="color:inherit;">Regulacja okien</a><br/>
+            <a href="/uslugi/wymiana-szyb" style="color:inherit;">Wymiana szyb</a><br/>
+            <a href="/uslugi/uszczelnianie-okien" style="color:inherit;">Uszczelnianie</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-mono);font-size:11px;color:rgba(247,245,240,.5);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px;">Firma</div>
+          <div style="font-size:13px;color:rgba(247,245,240,.85);line-height:2;">
+            <a href="/#uslugi" style="color:inherit;">O nas</a><br/>
+            <a href="/realizacje" style="color:inherit;">Realizacje</a><br/>
+            <a href="/uslugi" style="color:inherit;">Cennik</a><br/>
+            <a href="/#kontakt" style="color:inherit;">Kontakt</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-mono);font-size:11px;color:rgba(247,245,240,.5);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px;">Kontakt</div>
+          <div style="font-size:13px;color:rgba(247,245,240,.85);line-height:2;">
+            {site.contact.phone}<br/>
+            {site.contact.email}<br/>
+            {site.contact.hours}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;padding-top:20px;border-top:1px solid rgba(247,245,240,.18);display:flex;flex-direction:column;gap:8px;font-family:var(--font-mono);font-size:11px;color:rgba(247,245,240,.45);text-transform:uppercase;letter-spacing:.1em;">
+      <div>© {year} Okno Serwis · placeholder NIP</div>
+      <div><a href="/polityka-prywatnosci" style="color:inherit;">Polityka prywatności</a> · Regulamin</div>
+    </div>
+  </div>
+</footer>

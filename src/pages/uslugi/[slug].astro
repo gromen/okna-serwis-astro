@@ -1,0 +1,113 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import { services } from '~/lib/services';
+import { site } from '~/lib/site';
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const phoneHref = `tel:${site.contact.phone.replace(/\s/g, '')}`;
+
+const steps = [
+  { n: '01', title: 'Zgłoszenie', desc: 'Dzwonisz lub piszesz na WhatsApp — opisujesz usterkę, wysyłasz zdjęcie okna.' },
+  { n: '02', title: 'Wycena', desc: 'Podajemy orientacyjny koszt i najbliższy możliwy termin dojazdu.' },
+  { n: '03', title: 'Naprawa', desc: 'Fachowiec przyjeżdża i naprawia okno na miejscu — zwykle w 20–60 minut.' },
+  { n: '04', title: 'Gwarancja', desc: 'Wystawiamy 24-miesięczną gwarancję na wykonaną usługę.' },
+];
+---
+<Layout title={service.title} description={service.longDesc}>
+  <section class="container-page" style="padding-top:56px;">
+    <div class="eyebrow">Usługi / {service.letter} — {service.category}</div>
+    <h1 class="section-title" style="margin-bottom:20px;">{service.title}<span class="accent">.</span></h1>
+    <p class="lead-text" style="max-width:60ch;">{service.longDesc}</p>
+    <div class="price-note">{service.priceNote}</div>
+    <div class="hero-ctas">
+      <a href={phoneHref} class="btn btn-primary">Umów naprawę →</a>
+      <a href="/uslugi" class="btn">Wszystkie usługi</a>
+    </div>
+  </section>
+
+  <section class="section container-page" style="margin-top:56px;">
+    <div class="eyebrow">Jak to wygląda</div>
+    <h2 class="section-title" style="margin-bottom:32px;">Cztery kroki<span class="accent">.</span></h2>
+    <div class="steps-list">
+      {steps.map((step) => (
+        <div class="step-row">
+          <div class="step-n">Krok {step.n}</div>
+          <div class="step-title">{step.title}</div>
+          <div class="step-desc">{step.desc}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section-alt container-page" style="border-bottom:none;">
+    <div class="eyebrow">Kontakt</div>
+    <h2 class="section-title" style="margin-bottom:32px;max-width:20ch;">Zadzwoń<span class="accent">.</span> <span class="light-part">Umówimy termin.</span></h2>
+    <div class="kontakt-grid">
+      <div class="kontakt-dark">
+        <div class="kontakt-headline">Wystarczy jedno<br/>zgłoszenie<span class="accent">,</span><br/>żebyśmy wiedzieli<br/>co dalej.</div>
+        <div class="kontakt-row">
+          <span class="kontakt-label">Telefon</span>
+          <a href={phoneHref} class="kontakt-value">{site.contact.phone}</a>
+        </div>
+        <div class="kontakt-row" style="border-bottom:1px solid rgba(247,245,240,.18);">
+          <span class="kontakt-label">E-mail</span>
+          <a href={`mailto:${site.contact.email}`} class="kontakt-value">{site.contact.email}</a>
+        </div>
+      </div>
+      <div class="kontakt-light">
+        <div class="kontakt-eyebrow">Jak to wygląda</div>
+        <div class="kontakt-subhead">Zadzwoń — powiemy, czy dojedziemy dziś.</div>
+        <div class="kontakt-ctas">
+          <a href={phoneHref} class="btn btn-primary">Zadzwoń →</a>
+          <a href={site.whatsapp} class="btn btn-accent">WhatsApp</a>
+        </div>
+        <div class="hours-list">
+          <div class="hours-row"><span>Pon — Sob</span><span class="hours-time">7:00 — 20:00</span></div>
+          <div class="hours-row" style="border-bottom:none;"><span>Niedziela</span><span class="hours-time">zgłoszenia awaryjne</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .lead-text {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.4;
+    letter-spacing: -0.015em;
+    color: var(--color-ink-soft);
+    margin: 0 0 24px;
+
+    @media (min-width: 768px) {
+      font-size: 22px;
+    }
+  }
+
+  .price-note {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-ink-faint);
+    border: 1px solid var(--color-border-strong);
+    padding: 8px 14px;
+    margin-bottom: 28px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+</style>

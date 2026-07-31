@@ -1,0 +1,44 @@
+---
+---
+<div id="cookie-bar" role="dialog" aria-live="polite" aria-label="Zgoda na pliki cookie"
+  style="position:fixed;left:12px;right:12px;bottom:12px;z-index:50;display:none;border:1px solid var(--color-border-strong);background:var(--color-bg-alt);padding:18px;max-width:420px;margin-inline:auto;">
+  <p style="font-size:13px;color:var(--color-ink);line-height:1.5;margin:0 0 12px;">
+    Używamy plików cookie do analityki (Google Analytics). Możesz zaakceptować lub odrzucić.
+    Szczegóły w <a href="/polityka-prywatnosci" style="text-decoration:underline;">polityce prywatności</a>.
+  </p>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;">
+    <button type="button" data-cookie="accept" class="btn btn-primary" style="font-size:13px;padding:10px 16px;">Akceptuję</button>
+    <button type="button" data-cookie="reject" class="btn" style="font-size:13px;padding:10px 16px;">Odrzuć</button>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const KEY = 'cookie-consent';
+    const bar = document.getElementById('cookie-bar');
+    if (!bar) return;
+
+    const existing = (() => { try { return localStorage.getItem(KEY); } catch { return null; } })();
+    if (!existing) bar.style.display = 'block';
+
+    function apply(choice) {
+      try { localStorage.setItem(KEY, choice); } catch {}
+      bar.style.display = 'none';
+      if (typeof window.gtag === 'function') {
+        const granted = choice === 'accept';
+        window.gtag('consent', 'update', {
+          ad_storage: granted ? 'granted' : 'denied',
+          ad_user_data: granted ? 'granted' : 'denied',
+          ad_personalization: granted ? 'granted' : 'denied',
+          analytics_storage: granted ? 'granted' : 'denied',
+        });
+      }
+    }
+
+    if (existing === 'accept') apply('accept');
+
+    bar.querySelectorAll('[data-cookie]').forEach((btn) => {
+      btn.addEventListener('click', () => apply(btn.getAttribute('data-cookie')));
+    });
+  })();
+</script>

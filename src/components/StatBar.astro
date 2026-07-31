@@ -1,0 +1,11 @@
+---
+import { site } from '~/lib/site';
+---
+<div class="stat-bar">
+  {site.stats.map((stat) => (
+    <div class="stat-cell">
+      <div class="stat-value">{stat.value}{stat.suffix && <span class="accent">{stat.suffix}</span>}</div>
+      <div class="stat-label">{stat.label}</div>
+    </div>
+  ))}
+</div>

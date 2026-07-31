@@ -1,0 +1,20 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import ServiceCard from '~/components/ServiceCard.astro';
+import { services } from '~/lib/services';
+import { site } from '~/lib/site';
+---
+<Layout title="Usługi" description="Osiem usług naprawy i konserwacji okien — regulacja, wymiana szyb, uszczelnianie, konserwacja i więcej. Wycena indywidualna, dojazd tego samego dnia.">
+  <section class="container-page" style="padding-top:56px;padding-bottom:56px;">
+    <div class="eyebrow">Usługi</div>
+    <h1 class="section-title" style="margin-bottom:14px;">Osiem usług<br/><span class="light-part">w jednym serwisie.</span></h1>
+    <p class="body-text" style="max-width:58ch;margin-bottom:32px;">
+      Bez cen sztywnych — każda naprawa wyceniana indywidualnie po diagnozie na miejscu lub telefonicznym opisie usterki.
+      Obsługujemy {site.serviceArea.join(', ')} i okolice.
+    </p>
+    <div class="card-grid">
+      {services.map((service) => <ServiceCard service={service} />)}
+    </div>
+  </section>
+</Layout>
+

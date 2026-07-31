@@ -1,0 +1,68 @@
+---
+import { site } from '~/lib/site';
+import ThemeToggle from '~/components/ThemeToggle.astro';
+---
+
+<header style="position:sticky;top:0;z-index:40;background:var(--color-bg);border-bottom:1px solid var(--color-border);">
+  <div class="container-page" style="display:flex;align-items:center;justify-content:space-between;padding-block:16px;">
+    <a href="/" class="wordmark" style="font-size:18px;">
+      okno<span class="accent">.serwis</span>
+    </a>
+
+    <nav id="site-nav" style="display:none;gap:24px;align-items:center;">
+      {site.nav.map((item) => (
+        <a href={item.href} style="font-size:14px;font-weight:500;">{item.label}</a>
+      ))}
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href={`tel:${site.contact.phone.replace(/\s/g, '')}`} class="btn btn-primary" style="display:none;">
+        Zadzwoń · {site.contact.phone}
+      </a>
+      <ThemeToggle />
+      <button id="nav-toggle" type="button" aria-label="Otwórz menu" aria-expanded="false"
+        style="display:flex;flex-direction:column;gap:5px;width:36px;height:36px;align-items:center;justify-content:center;border:1px solid var(--color-border-strong);background:transparent;cursor:pointer;">
+        <span style="width:16px;height:2px;background:var(--color-ink);display:block;"></span>
+        <span style="width:16px;height:2px;background:var(--color-ink);display:block;"></span>
+        <span style="width:16px;height:2px;background:var(--color-ink);display:block;"></span>
+      </button>
+    </div>
+  </div>
+
+  <nav id="mobile-nav" style="display:none;flex-direction:column;border-top:1px solid var(--color-border);padding:8px 20px 16px;">
+    {site.nav.map((item) => (
+      <a href={item.href} style="padding:12px 0;font-size:15px;font-weight:500;border-bottom:1px solid var(--color-border);">{item.label}</a>
+    ))}
+    <a href={`tel:${site.contact.phone.replace(/\s/g, '')}`} class="btn btn-primary" style="margin-top:14px;">
+      Zadzwoń · {site.contact.phone}
+    </a>
+  </nav>
+</header>
+
+<style>
+  @media (min-width: 768px) {
+    #site-nav {
+      display: flex !important;
+    }
+    a.btn.btn-primary {
+      display: inline-flex !important;
+    }
+    #nav-toggle,
+    #mobile-nav {
+      display: none !important;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const toggle = document.getElementById('nav-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    if (!toggle || !mobileNav) return;
+    toggle.addEventListener('click', () => {
+      const open = mobileNav.style.display === 'flex';
+      mobileNav.style.display = open ? 'none' : 'flex';
+      toggle.setAttribute('aria-expanded', String(!open));
+    });
+  })();
+</script>

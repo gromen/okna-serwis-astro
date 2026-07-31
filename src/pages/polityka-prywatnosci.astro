@@ -1,0 +1,68 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import { site } from '~/lib/site';
+---
+<Layout title="Polityka prywatności" description="Polityka prywatności serwisu okno.serwis — informacje o przetwarzaniu danych i plikach cookie.">
+  <section class="container-page" style="padding-top:56px;padding-bottom:64px;max-width:80ch;">
+    <div class="eyebrow">Polityka prywatności</div>
+    <h1 class="section-title" style="margin-bottom:24px;">Polityka<br/><span class="light-part">prywatności.</span></h1>
+
+    <div class="policy-body">
+      <h2>1. Administrator danych</h2>
+      <p>Administratorem danych jest Okno Serwis Sp. z o.o. (dane rejestrowe — TODO: uzupełnić po rejestracji działalności). Kontakt: {site.contact.email}, {site.contact.phone}.</p>
+
+      <h2>2. Pliki cookie i analityka</h2>
+      <p>
+        Strona korzysta z Google Tag Manager i Google Analytics (GA4) do analizy ruchu, wyłącznie po wyrażeniu zgody w banerze cookie.
+        Stosujemy Google Consent Mode v2 — domyślnie wszystkie kategorie zgody (<code>analytics_storage</code>, <code>ad_storage</code>,
+        <code>ad_user_data</code>, <code>ad_personalization</code>) są ustawione na „odmowa" i włączane wyłącznie po akceptacji przez użytkownika.
+        Zgodę można wycofać w dowolnym momencie, czyszcząc dane przeglądarki dla tej strony.
+      </p>
+
+      <h2>3. Zakres przetwarzanych danych</h2>
+      <p>
+        Nie posiadamy na stronie formularza kontaktowego. Dane osobowe (np. numer telefonu) przekazywane są przez użytkownika
+        wyłącznie dobrowolnie, telefonicznie lub przez WhatsApp, w celu umówienia usługi naprawy.
+      </p>
+
+      <h2>4. Prawa użytkownika</h2>
+      <p>
+        Każdej osobie przysługuje prawo dostępu do swoich danych, ich sprostowania, usunięcia lub ograniczenia przetwarzania,
+        a także prawo do wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych.
+      </p>
+
+      <h2>5. Kontakt</h2>
+      <p>W sprawach dotyczących ochrony danych osobowych prosimy o kontakt: {site.contact.email}.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+
+  .policy-body {
+    margin-top: 24px;
+
+    h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: -0.015em;
+      color: var(--color-ink);
+      margin: 32px 0 12px;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--color-ink-soft);
+      margin: 0 0 12px;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+      background: var(--color-bg-alt);
+      padding: 2px 5px;
+    }
+  }
+</style>
