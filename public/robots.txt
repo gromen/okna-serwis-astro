@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://oknoserwis.pl/sitemap-index.xml
+Sitemap: https://perfokno.pl/sitemap-index.xml

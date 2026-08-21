@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://oknoserwis.pl',
+  site: 'https://perfokno.pl',
   trailingSlash: 'ignore',
   integrations: [sitemap()],
   vite: { plugins: [tailwindcss()] },
