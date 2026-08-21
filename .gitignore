@@ -14,3 +14,8 @@ npm-debug.log*
 
 # macOS
 .DS_Store
+
+# Claude Code local state / installed skills
+.claude/
+.agents/
+skills-lock.json
