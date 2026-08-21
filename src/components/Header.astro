@@ -1,12 +1,14 @@
 ---
+import { Image } from 'astro:assets';
 import { site } from '~/lib/site';
 import ThemeToggle from '~/components/ThemeToggle.astro';
+import logo from '~/assets/logo-perfokno-removebg-preview.png';
 ---
 
 <header style="position:sticky;top:0;z-index:40;background:var(--color-bg);border-bottom:1px solid var(--color-border);">
   <div class="container-page" style="display:flex;align-items:center;justify-content:space-between;padding-block:16px;">
-    <a href="/" class="wordmark" style="font-size:18px;">
-      okno<span class="accent">.serwis</span>
+    <a href="/" aria-label={site.name} class="logo-chip">
+      <Image src={logo} alt={site.name} width={140} height={82} style="display:block;height:40px;width:auto;" />
     </a>
 
     <nav id="site-nav" style="display:none;gap:24px;align-items:center;">
@@ -40,6 +42,19 @@ import ThemeToggle from '~/components/ThemeToggle.astro';
 </header>
 
 <style>
+  .logo-chip {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border-radius: 8px;
+    padding: 4px 0;
+  }
+
+  :global(:root[data-theme="dark"]) .logo-chip {
+    background: #fff;
+    padding: 4px 10px;
+  }
+
   @media (min-width: 768px) {
     #site-nav {
       display: flex !important;
