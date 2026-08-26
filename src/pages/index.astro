@@ -290,7 +290,7 @@ const values = [
   }
 
   .hero-image-slot {
-    min-height: 220px;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
     border: 1px solid var(--color-border-strong);
 
@@ -299,10 +299,6 @@ const values = [
       width: 100%;
       height: 100%;
       object-fit: cover;
-    }
-
-    @media (min-width: 1024px) {
-      min-height: 340px;
     }
   }
 
