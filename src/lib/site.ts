@@ -36,7 +36,8 @@ export const site = {
   nav: [
     { href: '/#uslugi', label: 'Usługi' },
     { href: '/#obszar', label: 'Obszar działania' },
-    { href: '/#realizacje', label: 'Realizacje' },
+    // TODO: przywrócić po dodaniu prawdziwych zdjęć realizacji — sekcja jest zakomentowana w index.astro.
+    // { href: '/#realizacje', label: 'Realizacje' },
     { href: '/#faq', label: 'FAQ' },
     { href: '/#kontakt', label: 'Kontakt' },
   ] as const,
