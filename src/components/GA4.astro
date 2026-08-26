@@ -18,11 +18,19 @@ const enabled = import.meta.env.PROD && !!gtmId;
         window.dataLayer = window.dataLayer || [];
         function gtag(){ dataLayer.push(arguments); }
         window.gtag = gtag;
+
+        // Read any previously stored consent choice now, synchronously — the GA4 tag in GTM
+        // fires on gtm.init, which evaluates before CookieBar's script runs (it lives near
+        // the end of <body>). Waiting for CookieBar to push a consent update arrives too late
+        // for returning visitors who already accepted, so the tag never fires again.
+        const storedConsent = (() => { try { return localStorage.getItem('cookie-consent'); } catch { return null; } })();
+        const granted = storedConsent === 'accept';
+
         gtag('consent', 'default', {
-          ad_storage: 'denied',
-          ad_user_data: 'denied',
-          ad_personalization: 'denied',
-          analytics_storage: 'denied',
+          ad_storage: granted ? 'granted' : 'denied',
+          ad_user_data: granted ? 'granted' : 'denied',
+          ad_personalization: granted ? 'granted' : 'denied',
+          analytics_storage: granted ? 'granted' : 'denied',
           wait_for_update: 500,
         });
       })();
