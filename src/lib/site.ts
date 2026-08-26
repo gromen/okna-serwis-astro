@@ -1,6 +1,6 @@
 export const site = {
-  name: 'okno.serwis',
-  shortName: 'okno.serwis',
+  name: 'Perfokno',
+  shortName: 'Perfokno',
   domain: 'perfokno.pl',
   url: 'https://perfokno.pl',
   description:
@@ -10,7 +10,7 @@ export const site = {
 
   // TODO: real address — no physical office confirmed yet, using a generic Warsaw-region query for the map.
   map: {
-    label: 'okno.serwis — obszar działania',
+    label: 'Perfokno — obszar działania',
     address: 'Warszawa i region Mazowsze (obsługa dojazdowa)',
     query: 'Warszawa',
   },
