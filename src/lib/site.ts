@@ -16,15 +16,13 @@ export const site = {
   },
 
   contact: {
-    // TODO placeholder — replace with the real business phone number before launch.
-    phone: '500 100 200',
+    phone: '732 960 727',
     // TODO placeholder — replace with the real business email before launch.
     email: 'kontakt@perfokno.pl',
     hours: 'Pon–Sob 7:00–20:00 · Niedziela: zgłoszenia awaryjne',
   },
 
-  // TODO placeholder — replace with the real WhatsApp business link (wa.me/48XXXXXXXXX) before launch.
-  whatsapp: 'https://wa.me/48500100200',
+  whatsapp: 'https://wa.me/48732960727',
 
   serviceArea: ['Warszawa', 'Łomża', 'Ostrołęka', 'Zambrów', 'Wyszków', 'Ostrów Mazowiecka'],
 
