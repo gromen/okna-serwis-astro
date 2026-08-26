@@ -22,22 +22,23 @@ import logo from '~/assets/logo-perfokno-removebg-preview.png';
         Zadzwoń · {site.contact.phone}
       </a>
       <ThemeToggle />
-      <button id="nav-toggle" type="button" aria-label="Otwórz menu" aria-expanded="false"
-        style="display:flex;flex-direction:column;gap:5px;width:36px;height:36px;align-items:center;justify-content:center;border:1px solid var(--color-border-strong);background:transparent;cursor:pointer;">
-        <span style="width:16px;height:2px;background:var(--color-ink);display:block;"></span>
-        <span style="width:16px;height:2px;background:var(--color-ink);display:block;"></span>
-        <span style="width:16px;height:2px;background:var(--color-ink);display:block;"></span>
+      <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
       </button>
     </div>
   </div>
 
-  <nav id="mobile-nav" style="display:none;flex-direction:column;border-top:1px solid var(--color-border);padding:8px 20px 16px;">
-    {site.nav.map((item) => (
-      <a href={item.href} style="padding:12px 0;font-size:15px;font-weight:500;border-bottom:1px solid var(--color-border);">{item.label}</a>
-    ))}
-    <a href={`tel:${site.contact.phone.replace(/\s/g, '')}`} class="btn btn-primary" style="margin-top:14px;">
-      Zadzwoń · {site.contact.phone}
-    </a>
+  <nav id="mobile-nav" class="mobile-nav">
+    <div class="mobile-nav-inner">
+      {site.nav.map((item, i) => (
+        <a href={item.href} class="mobile-nav-link" style={`--i:${i}`}>{item.label}</a>
+      ))}
+      <a href={`tel:${site.contact.phone.replace(/\s/g, '')}`} class="btn btn-primary mobile-nav-link" style={`--i:${site.nav.length};margin-top:14px;`}>
+        Zadzwoń · {site.contact.phone}
+      </a>
+    </div>
   </nav>
 </header>
 
@@ -55,6 +56,98 @@ import logo from '~/assets/logo-perfokno-removebg-preview.png';
     padding: 4px 10px;
   }
 
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border-strong);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .nav-toggle-bar {
+    width: 16px;
+    height: 2px;
+    background: var(--color-ink);
+    display: block;
+    transform-origin: center;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .mobile-nav {
+    display: grid;
+    grid-template-rows: 0fr;
+    border-top: 1px solid transparent;
+    transition: grid-template-rows 0.3s ease, border-color 0.3s ease;
+  }
+
+  .mobile-nav.is-open {
+    grid-template-rows: 1fr;
+    border-top-color: var(--color-border);
+  }
+
+  .mobile-nav-inner {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+  }
+
+  .mobile-nav.is-open .mobile-nav-inner {
+    padding: 8px 20px 16px;
+  }
+
+  .mobile-nav-link {
+    padding: 12px 0;
+    font-size: 15px;
+    font-weight: 500;
+    border-bottom: 1px solid var(--color-border);
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  .mobile-nav.is-open .mobile-nav-link {
+    animation: mobile-nav-link-in 0.3s ease forwards;
+    animation-delay: calc(var(--i, 0) * 40ms);
+  }
+
+  a.btn.mobile-nav-link {
+    border-bottom: none;
+  }
+
+  @keyframes mobile-nav-link-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-toggle-bar,
+    .mobile-nav,
+    .mobile-nav-link {
+      transition: none;
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   @media (min-width: 768px) {
     #site-nav {
       display: flex !important;
@@ -62,8 +155,8 @@ import logo from '~/assets/logo-perfokno-removebg-preview.png';
     a.btn.btn-primary {
       display: inline-flex !important;
     }
-    #nav-toggle,
-    #mobile-nav {
+    .nav-toggle,
+    .mobile-nav {
       display: none !important;
     }
   }
@@ -75,9 +168,8 @@ import logo from '~/assets/logo-perfokno-removebg-preview.png';
     const mobileNav = document.getElementById('mobile-nav');
     if (!toggle || !mobileNav) return;
     toggle.addEventListener('click', () => {
-      const open = mobileNav.style.display === 'flex';
-      mobileNav.style.display = open ? 'none' : 'flex';
-      toggle.setAttribute('aria-expanded', String(!open));
+      const open = mobileNav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
     });
   })();
 </script>
