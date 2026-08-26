@@ -65,7 +65,11 @@ const values = [
       </div>
     </div>
 
-    <!-- TODO: statystyki wyłączone do czasu potwierdzenia prawdziwych danych (lata doświadczenia, liczba napraw, ocena Google). -->
+    {/* TODO: statystyki wyłączone do czasu potwierdzenia prawdziwych danych (lata doświadczenia, liczba napraw, ocena Google).
+    <div style="margin-top:32px;">
+      <StatBar />
+    </div>
+    */}
   </section>
 
   <!-- O FIRMIE -->
@@ -198,10 +202,12 @@ const values = [
           <span class="kontakt-label">Telefon</span>
           <a href={phoneHref} class="kontakt-value">{site.contact.phone}</a>
         </div>
+        {/* TODO: e-mail ukryty do czasu podania prawidłowego adresu przez klienta.
         <div class="kontakt-row" style="border-bottom:1px solid rgba(247,245,240,.18);">
           <span class="kontakt-label">E-mail</span>
           <a href={`mailto:${site.contact.email}`} class="kontakt-value">{site.contact.email}</a>
         </div>
+        */}
       </div>
       <div class="kontakt-light">
         <div class="kontakt-eyebrow">Jak to wygląda</div>
