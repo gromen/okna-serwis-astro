@@ -1,3 +1,5 @@
+const businessAddress = "ul. Targowa 15, 07-300 Ostrów Mazowiecka";
+
 export const site = {
   name: "Perfokno",
   shortName: "Perfokno",
@@ -8,11 +10,17 @@ export const site = {
   locale: "pl-PL",
   gtmId: import.meta.env.PUBLIC_GTM_ID ?? "",
 
-  // TODO: real address — no physical office confirmed yet, using a generic Warsaw-region query for the map.
+  legal: {
+    name: "Krystian Piórkowski Serwis",
+    nip: "7591760449",
+    regon: "528637600",
+    address: businessAddress,
+  },
+
   map: {
-    label: "Perfokno — obszar działania",
-    address: "Warszawa i region Mazowsze (obsługa dojazdowa)",
-    query: "Warszawa",
+    label: "Perfokno — siedziba",
+    address: businessAddress,
+    query: businessAddress,
   },
 
   contact: {

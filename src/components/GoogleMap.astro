@@ -8,8 +8,7 @@ const {
   height = 380,
 } = Astro.props;
 
-// No API key required. TODO: swap the generic "Warszawa" query for a real address
-// once the business confirms a fixed office/depot location.
+// No API key required.
 const src = `https://maps.google.com/maps?q=${encodeURIComponent(query)}&t=&z=10&ie=UTF8&iwloc=&output=embed`;
 ---
 <div style="border:1px solid var(--color-border-strong); overflow:hidden;">

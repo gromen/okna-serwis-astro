@@ -89,6 +89,7 @@ const year = new Date().getFullYear();
       style="margin-top:32px;padding-top:20px;border-top:1px solid rgba(247,245,240,.18);display:flex;flex-direction:column;gap:8px;font-family:var(--font-mono);font-size:11px;color:rgba(247,245,240,.45);text-transform:uppercase;letter-spacing:.1em;"
     >
       <div>© {year} {site.name}</div>
+      <div style="word-break:break-word;overflow-wrap:break-word;">{site.legal.name} · NIP {site.legal.nip} · {site.legal.address}</div>
       <div>
         <a href="/polityka-prywatnosci" style="color:inherit;"
           >Polityka prywatności</a
