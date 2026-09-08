@@ -32,6 +32,8 @@ export const site = {
 
   whatsapp: "https://wa.me/48732960727",
 
+  googleReviewUrl: "https://g.page/r/CQsdXS7kXQL4EBM/review",
+
   serviceArea: [
     "Warszawa",
     "Łomża",

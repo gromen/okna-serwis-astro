@@ -1,0 +1,85 @@
+---
+import { Image } from "astro:assets";
+import qrCode from "~/assets/qr-google-review.png";
+import { site } from "~/lib/site";
+---
+
+<div class="review-cta">
+  <div class="review-cta-text">
+    <div class="review-stars" aria-hidden="true">★★★★★</div>
+    <h2 class="section-title" style="margin-bottom:10px;">
+      Byliśmy u Ciebie<span class="accent">?</span>
+      <span class="light-part">Powiedz jak poszło.</span>
+    </h2>
+    <p class="review-cta-desc">
+      Opinia w Google zajmuje minutę, a nam pomaga dotrzeć do kolejnych
+      klientów w regionie. Dziękujemy za każdą.
+    </p>
+    <a
+      href={site.googleReviewUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn btn-primary">Zostaw opinię w Google →</a
+    >
+  </div>
+  <div class="review-cta-qr">
+    <Image src={qrCode} alt="Kod QR do wystawienia opinii Perfokno w Google" width={200} height={200} />
+    <span class="review-cta-qr-label">Zeskanuj telefonem</span>
+  </div>
+</div>
+
+<style>
+  .review-cta {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-items: center;
+  }
+
+  .review-stars {
+    color: var(--color-accent);
+    font-size: 20px;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+  }
+
+  .review-cta-desc {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--color-ink-soft);
+    max-width: 40ch;
+    margin: 0 0 20px;
+
+    @media (min-width: 768px) {
+      font-size: 16px;
+    }
+  }
+
+  .review-cta-qr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    justify-self: start;
+  }
+
+  .review-cta-qr :global(img) {
+    border: 1px solid var(--color-border-strong);
+    background: #fff;
+    padding: 14px;
+  }
+
+  .review-cta-qr-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  @media (min-width: 768px) {
+    .review-cta {
+      grid-template-columns: 1fr auto;
+    }
+  }
+</style>

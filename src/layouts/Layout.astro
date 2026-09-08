@@ -5,6 +5,7 @@ import Footer from '~/components/Footer.astro';
 import CookieBar from '~/components/CookieBar.astro';
 import GA4 from '~/components/GA4.astro';
 import StickyCallBar from '~/components/StickyCallBar.astro';
+import FloatingReviewButton from '~/components/FloatingReviewButton.astro';
 import { site } from '~/lib/site';
 
 interface Props {
@@ -40,11 +41,7 @@ const localBusinessSchema = {
     };
   })(),
   areaServed: site.serviceArea.map((name) => ({ '@type': 'City', name })),
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '312',
-  },
+  // TODO: przywrócić aggregateRating, gdy wizytówka Google zbierze prawdziwe opinie.
 };
 ---
 
@@ -99,6 +96,7 @@ const localBusinessSchema = {
     <main id="main"><slot /></main>
     <Footer />
     <StickyCallBar />
+    <FloatingReviewButton />
     <CookieBar />
   </body>
 </html>

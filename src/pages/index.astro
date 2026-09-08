@@ -4,6 +4,7 @@ import heroPhoto from "~/assets/photos/hero-technician.jpg";
 import teamPhoto from "~/assets/photos/team.jpg";
 import FaqItem from "~/components/FaqItem.astro";
 import GoogleMap from "~/components/GoogleMap.astro";
+import ReviewCTA from "~/components/ReviewCTA.astro";
 import ServiceCard from "~/components/ServiceCard.astro";
 import Layout from "~/layouts/Layout.astro";
 import { services } from "~/lib/services";
@@ -246,17 +247,11 @@ const values = [
     </div>
   </section>
 
-  {
-    /* TODO: opinie ukryte do czasu potwierdzenia prawdziwych recenzji od klienta.
+  <!-- OPINIE -->
   <section id="opinie" class="section section-alt container-page">
     <div class="eyebrow">06 / Opinie</div>
-    <h2 class="section-title">4.9 / 5<br/><span class="light-part">na podstawie 312 opinii.</span></h2>
-    <div class="review-grid">
-      {reviews.map((r) => <ReviewCard quote={r.quote} name={r.name} city={r.city} />)}
-    </div>
+    <ReviewCTA />
   </section>
-  */
-  }
 
   {
     /* TODO: sekcja Realizacje ukryta do czasu otrzymania od klienta prawdziwych zdjęć przed/po.
