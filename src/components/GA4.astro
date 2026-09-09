@@ -3,6 +3,7 @@ import { site } from '~/lib/site';
 
 const gtmId = site.gtmId;
 const googleAdsId = site.googleAdsId;
+const phoneClickLabel = site.googleAdsPhoneClickLabel;
 const enabled = import.meta.env.PROD && !!gtmId;
 ---
 
@@ -58,6 +59,17 @@ const enabled = import.meta.env.PROD && !!gtmId;
             gtag('config', googleAdsId);
           }
         </script>
+        {phoneClickLabel && (
+          <script is:inline define:vars={{ googleAdsId, phoneClickLabel }}>
+            if (!window.__GTM_DISABLED__) {
+              document.addEventListener('click', function (e) {
+                const link = e.target.closest('a[href^="tel:"]');
+                if (!link) return;
+                gtag('event', 'conversion', { send_to: googleAdsId + '/' + phoneClickLabel });
+              });
+            }
+          </script>
+        )}
       </>
     )}
   </>

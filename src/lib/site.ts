@@ -10,6 +10,7 @@ export const site = {
   locale: "pl-PL",
   gtmId: import.meta.env.PUBLIC_GTM_ID ?? "",
   googleAdsId: "AW-18414855741",
+  googleAdsPhoneClickLabel: "SQaICNi59PEcEL3M8cxE",
 
   legal: {
     name: "Krystian Piórkowski Serwis",
