@@ -2,6 +2,7 @@
 import { site } from '~/lib/site';
 
 const gtmId = site.gtmId;
+const googleAdsId = site.googleAdsId;
 const enabled = import.meta.env.PROD && !!gtmId;
 ---
 
@@ -48,5 +49,16 @@ const enabled = import.meta.env.PROD && !!gtmId;
         f.parentNode.insertBefore(j, f);
       })(window, document, 'script', 'dataLayer', gtmId);
     </script>
+    {googleAdsId && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`}></script>
+        <script is:inline define:vars={{ googleAdsId }}>
+          if (!window.__GTM_DISABLED__) {
+            gtag('js', new Date());
+            gtag('config', googleAdsId);
+          }
+        </script>
+      </>
+    )}
   </>
 )}

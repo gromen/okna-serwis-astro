@@ -9,6 +9,7 @@ export const site = {
     "Regionalny serwis naprawy okien PCV i drewnianych. Regulacja, uszczelnianie, wymiana szyb i okuć — dojazd tego samego dnia w Warszawie i regionie.",
   locale: "pl-PL",
   gtmId: import.meta.env.PUBLIC_GTM_ID ?? "",
+  googleAdsId: "AW-18414855741",
 
   legal: {
     name: "Krystian Piórkowski Serwis",
