@@ -65,7 +65,23 @@ const enabled = import.meta.env.PROD && !!gtmId;
               document.addEventListener('click', function (e) {
                 const link = e.target.closest('a[href^="tel:"]');
                 if (!link) return;
-                gtag('event', 'conversion', { send_to: googleAdsId + '/' + phoneClickLabel });
+                e.preventDefault();
+                const href = link.href;
+                // event_callback may never fire (blocked script, denied consent) — a fallback
+                // timeout guarantees the phone dialer still opens even if tracking fails.
+                let navigated = false;
+                const go = function () {
+                  if (navigated) return;
+                  navigated = true;
+                  window.location.href = href;
+                };
+                gtag('event', 'conversion', {
+                  send_to: googleAdsId + '/' + phoneClickLabel,
+                  value: 1.0,
+                  currency: 'PLN',
+                  event_callback: go,
+                });
+                setTimeout(go, 500);
               });
             }
           </script>
